@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mrutyunjay Kar — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet (all CSS lives here) -->
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+
+<body>
+
+<!-- Scroll progress bar at the very top -->
+<div id="progress-bar"></div>
+
+<!-- Custom cursor glow (hidden on touch devices) -->
+<div id="cursor"></div>
+
+<!-- Animated background blobs -->
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- ═══════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════ -->
+<nav>
+  <button class="nav-logo" id="brandCommandButton" type="button" aria-label="Open MK command palette">MK.</button>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+      <div class="thumb" id="themeIcon">🌙</div>
+    </button>
+  </div>
+</nav>
+
+<div class="command-palette-backdrop" id="commandPaletteBackdrop" hidden>
+  <div class="command-palette" id="commandPalette" role="dialog" aria-modal="true" aria-labelledby="commandPaletteTitle">
+    <div class="command-palette-header">
+      <div>
+        <span class="command-palette-kicker">MK Command Palette</span>
+        <h2 id="commandPaletteTitle">Quick actions for exploring the portfolio.</h2>
+      </div>
+      <button class="command-palette-close" id="commandPaletteClose" type="button" aria-label="Close command palette">×</button>
+    </div>
+    <div class="command-palette-list">
+      <button class="command-action" type="button" data-command="projects">
+        <span class="command-action-copy">
+          <span class="command-action-title">Jump to Projects</span>
+          <span class="command-action-meta">See flagship work and proof points</span>
+        </span>
+        <span class="command-shortcut" aria-hidden="true">P</span>
+      </button>
+      <button class="command-action" type="button" data-command="resume">
+        <span class="command-action-copy">
+          <span class="command-action-title">Open Resume</span>
+          <span class="command-action-meta">Download the latest PDF</span>
+        </span>
+        <span class="command-shortcut" aria-hidden="true">R</span>
+      </button>
+      <button class="command-action" type="button" data-command="theme">
+        <span class="command-action-copy">
+          <span class="command-action-title">Toggle Theme</span>
+          <span class="command-action-meta">Switch between dark and light mode</span>
+        </span>
+        <span class="command-shortcut" aria-hidden="true">T</span>
+      </button>
+      <button class="command-action" type="button" data-command="contact">
+        <span class="command-action-copy">
+          <span class="command-action-title">Contact Me</span>
+          <span class="command-action-meta">Jump to the contact section</span>
+        </span>
+        <span class="command-shortcut" aria-hidden="true">C</span>
+      </button>
+      <button class="command-action" type="button" data-command="about">
+        <span class="command-action-copy">
+          <span class="command-action-title">About MK</span>
+          <span class="command-action-meta">Open a quick identity panel with focus, stack, and availability</span>
+        </span>
+        <span class="command-shortcut" aria-hidden="true">A</span>
+      </button>
+    </div>
+    <div class="command-about-panel" id="commandAboutPanel" hidden>
+      <div class="command-about-grid">
+        <article class="command-about-card">
+          <span class="command-about-label">Role</span>
+          <strong>SDET · Automation Engineer</strong>
+        </article>
+        <article class="command-about-card">
+          <span class="command-about-label">Current Focus</span>
+          <strong>Playwright, AI-assisted testing, CI feedback</strong>
+        </article>
+        <article class="command-about-card">
+          <span class="command-about-label">Preferred Stack</span>
+          <strong>TypeScript, Playwright, GitHub Actions, Python</strong>
+        </article>
+        <article class="command-about-card">
+          <span class="command-about-label">Availability</span>
+          <strong>Open to strong SDET and QA automation roles</strong>
+        </article>
+      </div>
+    </div>
+    <p class="command-palette-footnote">Tip: press <kbd>Esc</kbd> to close.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     HERO SECTION
+     ═══════════════════════════════════ -->
+<section id="hero">
+  <!-- Large cinematic background photo — fades out with gradient -->
+  <div class="hero-bg-photo" aria-hidden="true">
+    <img src="assets/images/mypic.jpg" alt="">
+  </div>
+  <div class="hero-badge"><span></span> Open to new opportunities</div>
+  <h1>Hi, I'm <span class="gradient-text">Mrutyunjay Kar</span></h1>
+  <p>Results-driven SDET — currently a <span class="typewriter-role" id="typewriter"></span><span class="cursor-blink">|</span></p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="assets/resume/resume.pdf" download class="btn-resume">📄 Download Resume</a>
+    <a href="#contact" class="btn-outline">Contact Me</a>
+  </div>
+</section>
+
+<!-- BEGIN: Business Impact Strip -->
+<section id="impact-strip" aria-label="Business impact highlights">
+  <div class="container">
+    <div class="impact-strip-shell reveal">
+      <div class="impact-strip-intro">
+        <span class="section-label">Business Impact</span>
+        <h2 class="impact-strip-title">Automation that improves release confidence, speed, and maintainability.</h2>
+      </div>
+      <div class="impact-strip-grid">
+        <article class="impact-item">
+          <span class="impact-value">200+</span>
+          <span class="impact-label">Cross-browser scenarios automated</span>
+        </article>
+        <article class="impact-item">
+          <span class="impact-value">40%</span>
+          <span class="impact-label">Code duplication reduced with reusable POM architecture</span>
+        </article>
+        <article class="impact-item">
+          <span class="impact-value">30%</span>
+          <span class="impact-label">Faster test authoring through AI-assisted workflows</span>
+        </article>
+        <article class="impact-item">
+          <span class="impact-value">PR-Ready</span>
+          <span class="impact-label">Regression checks integrated directly into CI pipelines</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: Business Impact Strip -->
+
+<!-- ═══════════════════════════════════
+     ABOUT SECTION
+     ═══════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <span class="section-label">Who I am</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+
+      <!-- Left: bio text + skill chips + tech icons -->
+      <div class="about-text reveal">
+        <p>Results-driven <strong>SDET with 2+ years</strong> of experience building scalable test automation frameworks, with primary expertise in <strong>Playwright (TypeScript)</strong>. Proficient in Selenium and Robot Framework.</p>
+        <p>When I'm not automating, I'm exploring new testing strategies, contributing to open-source tools, and levelling up my GenAI skills.</p>
+
+        <!-- Skill chip pills -->
+        <div class="skills-grid">
+          <span class="skill-chip">Playwright (TS)</span>
+          <span class="skill-chip">TypeScript</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Selenium</span>
+          <span class="skill-chip">Robot Framework</span>
+          <span class="skill-chip">GitHub Copilot</span>
+          <span class="skill-chip">GitHub Actions</span>
+          <span class="skill-chip">Codefresh</span>
+          <span class="skill-chip">REST APIs</span>
+          <span class="skill-chip">Postman</span>
+          <span class="skill-chip">PostgreSQL</span>
+          <span class="skill-chip">Java</span>
+        </div>
+
+        <!-- Skill proficiency rings — logo inside ring, % below label -->
+        <div class="ring-grid">
+          <div class="ring-card" data-pct="95" data-color="#38bdf8">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg" alt="Playwright" class="ring-logo">
+            </div>
+            <span class="ring-label">Playwright</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="88" data-color="#3178c6">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" class="ring-logo">
+            </div>
+            <span class="ring-label">TypeScript</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="90" data-color="#34d399">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <span class="ring-logo" aria-label="Robot Framework" style="display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;">🤖</span>
+            </div>
+            <span class="ring-label">Robot FW</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="83" data-color="#f97316">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman" class="ring-logo">
+            </div>
+            <span class="ring-label">APIs</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="82" data-color="#3776ab">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" class="ring-logo">
+            </div>
+            <span class="ring-label">Python</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="85" data-color="#43b02a">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/selenium/selenium-original.svg" alt="Selenium" class="ring-logo">
+            </div>
+            <span class="ring-label">Selenium</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="80" data-color="#f472b6">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" class="ring-logo">
+            </div>
+            <span class="ring-label">Java</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="70" data-color="#336791">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="ring-logo">
+            </div>
+            <span class="ring-label">PostgreSQL</span>
+            <span class="ring-pct">0%</span>
+          </div>
+          <div class="ring-card" data-pct="65" data-color="#818cf8">
+            <div class="ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions" class="ring-logo">
+            </div>
+            <span class="ring-label">CI / CD</span>
+            <span class="ring-pct">0%</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: animated stat cards -->
+      <div class="about-stats reveal" style="transition-delay:0.15s">
+        <div class="stat-card">
+          <div class="stat-number gradient-text" data-count="2" data-suffix="+">0</div>
+          <p>Years of Experience</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number gradient-text" data-count="200" data-suffix="+">0</div>
+          <p>Test Scenarios Built</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number gradient-text" data-count="40" data-suffix="%">0</div>
+          <p>Code Duplication Cut</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number gradient-text" data-count="30" data-suffix="%">0</div>
+          <p>Faster Test Authoring</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     EXPERIENCE TIMELINE
+     ═══════════════════════════════════ -->
+<section id="experience">
+  <div class="container">
+    <span class="section-label">Where I've worked</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <!-- Ericsson -->
+      <div class="tl-item reveal">
+        <div class="tl-dot">
+          <img src="https://cdn.simpleicons.org/ericsson/38bdf8" alt="Ericsson logo">
+        </div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-title">Test Automation Engineer</span>
+            <span class="tl-period">Jan 2024 – Present</span>
+          </div>
+          <div class="tl-company">Ericsson · Noida, Uttar Pradesh</div>
+          <ul>
+            <li>Engineered <strong>end-to-end test automation suites</strong> using Playwright (TypeScript) with POM architecture, covering <strong>200+ test scenarios</strong> across Chrome, Firefox, and WebKit.</li>
+            <li>Leveraged <strong>GitHub Copilot</strong> &amp; AI-assisted coding to accelerate test script generation, reducing average authoring time by <strong>~30%</strong>.</li>
+            <li>Developed complementary frameworks in Python using <strong>Robot Framework</strong> and Selenium for legacy service coverage.</li>
+            <li>Engineered API integration workflows with <strong>PostgreSQL</strong> to validate backend data consistency across REST and SOAP/WSI interfaces.</li>
+            <li>Architected reusable Page Object Models and modular components, reducing code duplication by <strong>40%</strong>.</li>
+            <li>Integrated test suites into CI/CD pipelines via <strong>Codefresh</strong> and GitHub Actions for automated regression on every PR.</li>
+            <li>Automated repetitive workflows using <strong>GenAI testing tools</strong> and Browser Use AI agents.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Higheadius -->
+      <div class="tl-item reveal" style="transition-delay:0.15s">
+        <div class="tl-dot initials">H</div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-title">Automation &amp; Integration Intern</span>
+            <span class="tl-period">Feb 2022 – Jul 2022</span>
+          </div>
+          <div class="tl-company">Higheadius · Remote</div>
+          <ul>
+            <li>Built <strong>RPA workflows</strong> to automate billing processes for B2B fintech clients, reducing manual processing effort across billing cycles.</li>
+            <li>Applied <strong>Regex and rule-based automation</strong> to extract, validate, and clean unstructured billing data from multiple source formats.</li>
+            <li>Gained production exposure to real-world billing system integrations and automated data pipeline best practices.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BEGIN: Flagship Case Study -->
+<section id="case-study">
+  <div class="container">
+    <span class="section-label">Flagship Case Study</span>
+    <h2 class="section-title">Playwright Regression Platform</h2>
+
+    <div class="case-study-shell reveal">
+      <div class="case-study-lead">
+        <span class="case-study-kicker">Ericsson · Automation Engineering</span>
+        <h3>Built a scalable end-to-end regression layer for fast-moving product validation.</h3>
+        <p>The goal was not just writing tests. It was creating a maintainable test platform that could validate UI flows, support cross-browser confidence, plug into CI, and stay usable as the product surface kept growing.</p>
+      </div>
+
+      <div class="case-study-grid">
+        <article class="case-study-card">
+          <span class="case-study-card-label">Problem</span>
+          <p>Manual validation and fragmented automation slowed release confidence, increased duplication, and made regression expensive to maintain.</p>
+        </article>
+        <article class="case-study-card">
+          <span class="case-study-card-label">Approach</span>
+          <p>Designed a Playwright + TypeScript framework around Page Object Models, reusable helpers, and modular test flows that scaled cleanly across product areas.</p>
+        </article>
+        <article class="case-study-card">
+          <span class="case-study-card-label">CI Integration</span>
+          <p>Wired the suite into GitHub Actions to run a full regression suite on every release, covering 800+ API and UI test cases to build release confidence and sanitize the system through Datadog.</p>
+        </article>
+        <article class="case-study-card">
+          <span class="case-study-card-label">Validation Depth</span>
+          <p>Combined UI coverage with API assertions and PostgreSQL-backed checks to verify not just the screen state but the underlying data integrity.</p>
+        </article>
+      </div>
+
+      <div class="case-study-bottom">
+        <div class="case-study-impact">
+          <span class="case-study-subtitle">Outcome</span>
+          <ul>
+            <li>Scaled to 200+ automated scenarios across Chrome, Firefox, and WebKit.</li>
+            <li>Reduced code duplication by 40% through reusable page and component abstractions.</li>
+            <li>Improved test authoring speed by roughly 30% with AI-assisted development workflows.</li>
+          </ul>
+        </div>
+
+        <div class="case-study-flow" aria-label="Automation workflow overview">
+          <span class="case-study-subtitle">Architecture Snapshot</span>
+          <div class="flow-steps">
+            <div class="flow-step">UI Flows</div>
+            <div class="flow-step">POM Layer</div>
+            <div class="flow-step">API + DB Checks</div>
+            <div class="flow-step">CI Regression</div>
+            <div class="flow-step">Release Confidence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: Flagship Case Study -->
+
+<!-- ═══════════════════════════════════
+     PROJECTS SECTION
+     ═══════════════════════════════════ -->
+<section id="projects">
+  <div class="container">
+    <span class="section-label">What I built</span>
+    <h2 class="section-title">My Projects</h2>
+    <p class="projects-note">Some enterprise automation work is confidential, so this section highlights framework design, coverage depth, CI integration, and measurable outcomes instead of source-code links.</p>
+
+    <!-- Filter tabs -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="playwright">Playwright</button>
+      <button class="filter-btn" data-filter="python">Python</button>
+      <button class="filter-btn" data-filter="ai">AI/ML</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 — with screenshot from assets/ -->
+      <div class="project-card reveal" data-tags="playwright typescript">
+        <span class="project-badge project-badge-confidential">Confidential enterprise work</span>
+        <div class="project-icon" style="background:rgba(56,189,248,0.12)">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg" alt="Playwright" style="width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 0 6px #38bdf8);">
+        </div>
+        <h3>Playwright E2E Suite</h3>
+        <p>End-to-end automation suite built with a <strong>POM-based framework</strong>, reusable common components, and table helpers, covering <strong>200+ scenarios</strong> across Chrome, Firefox &amp; WebKit. Integrated into GitHub Actions for PR-triggered regression.</p>
+        <div class="project-facts">
+          <span class="project-fact">200+ scenarios</span>
+          <span class="project-fact">Cross-browser</span>
+          <span class="project-fact">PR regression</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Playwright</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">POM</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card reveal" style="transition-delay:0.1s" data-tags="python playwright">
+        <span class="project-badge project-badge-confidential">Internal framework</span>
+        <div class="project-icon" style="background:rgba(129,140,248,0.12)">🤖</div>
+        <h3>Robot Framework Suite</h3>
+        <p>Python-based automation framework using Robot Framework and Selenium for legacy service coverage, with REST &amp; SOAP/WSI API validation backed by PostgreSQL.</p>
+        <div class="project-facts">
+          <span class="project-fact">Legacy coverage</span>
+          <span class="project-fact">API + DB checks</span>
+          <span class="project-fact">Python stack</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Robot Framework</span>
+          <span class="tag">Selenium</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card reveal" style="transition-delay:0.2s" data-tags="ai python">
+        <div class="project-icon" style="background:rgba(52,211,153,0.12)">🤟</div>
+        <h3>Sign Language to Text Converter</h3>
+        <p>Real-time computer vision system using Python and ML models to recognise American Sign Language (ASL) alphabets with <strong>98% accuracy</strong>, enabling accessible communication for the Deaf community.</p>
+        <div class="project-facts">
+          <span class="project-fact">98% accuracy</span>
+          <span class="project-fact">Real-time CV</span>
+          <span class="project-fact">Accessibility use case</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Computer Vision</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BEGIN: AI In Testing -->
+<section id="ai-testing">
+  <div class="container">
+    <span class="section-label">AI In Testing</span>
+    <h2 class="section-title">Using AI to speed up automation without lowering quality.</h2>
+
+    <div class="ai-testing-shell reveal">
+      <div class="ai-testing-copy">
+        <p>I use AI as a force multiplier inside the testing workflow: to accelerate authoring, reduce repetitive effort, and improve the speed at which automation frameworks evolve. The value is not novelty. The value is faster delivery with stronger engineering discipline.</p>
+        <div class="ai-testing-points">
+          <article class="ai-point">
+            <span class="ai-point-title">Faster Test Authoring</span>
+            <p>Use GitHub Copilot and prompt-driven workflows to draft selectors, test flows, edge cases, and reusable helper logic faster.</p>
+          </article>
+          <article class="ai-point">
+            <span class="ai-point-title">Better Coverage Ideation</span>
+            <p>Generate missing-path ideas, negative scenarios, and risk-based validation prompts to close functional gaps earlier.</p>
+          </article>
+          <article class="ai-point">
+            <span class="ai-point-title">Maintenance Acceleration</span>
+            <p>Speed up locator updates, repeated refactors, and framework cleanup while keeping review and design decisions engineering-led.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="ai-testing-panel">
+        <span class="ai-panel-title">Where AI helps most</span>
+        <div class="ai-stack">
+          <div class="ai-stack-row">
+            <span class="ai-stack-label">Prompting</span>
+            <span class="ai-stack-value">Test idea generation</span>
+          </div>
+          <div class="ai-stack-row">
+            <span class="ai-stack-label">Copilot</span>
+            <span class="ai-stack-value">Boilerplate and refactors</span>
+          </div>
+          <div class="ai-stack-row">
+            <span class="ai-stack-label">Validation</span>
+            <span class="ai-stack-value">Human-reviewed assertions</span>
+          </div>
+          <div class="ai-stack-row">
+            <span class="ai-stack-label">Outcome</span>
+            <span class="ai-stack-value">Faster, cleaner automation delivery</span>
+          </div>
+        </div>
+        <div class="ai-testing-note">
+          <strong>Principle:</strong> AI assists with speed and ideation. Final test design, risk judgment, and quality gates remain engineering decisions.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: AI In Testing -->
+
+<!-- BEGIN: Automation Architecture Visual -->
+<section id="architecture-visual">
+  <div class="container">
+    <span class="section-label">Automation Architecture</span>
+    <h2 class="section-title">How I think about test systems, not just test scripts.</h2>
+
+    <div class="architecture-shell reveal">
+      <div class="architecture-column">
+        <span class="architecture-heading">Execution Layer</span>
+        <div class="architecture-node">Cross-browser UI flows</div>
+        <div class="architecture-node">API validations</div>
+        <div class="architecture-node">Data integrity checks</div>
+      </div>
+
+      <div class="architecture-column architecture-column-core">
+        <span class="architecture-heading">Framework Core</span>
+        <div class="architecture-node architecture-node-core">Playwright + TypeScript</div>
+        <div class="architecture-node architecture-node-core">Page Object Models</div>
+        <div class="architecture-node architecture-node-core">Reusable helpers and fixtures</div>
+      </div>
+
+      <div class="architecture-column">
+        <span class="architecture-heading">Delivery Layer</span>
+        <div class="architecture-node">GitHub Actions</div>
+        <div class="architecture-node">Codefresh pipelines</div>
+        <div class="architecture-node">PR regression feedback</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: Automation Architecture Visual -->
+
+<!-- BEGIN: What I Can Help Teams With -->
+<section id="services">
+  <div class="container">
+    <span class="section-label">What I Can Help With</span>
+    <h2 class="section-title">The kind of problems I can solve for engineering teams.</h2>
+
+    <div class="services-grid reveal">
+      <article class="service-card">
+        <span class="service-index">01</span>
+        <h3>Build scalable Playwright frameworks</h3>
+        <p>Set up maintainable end-to-end automation with reusable Page Object Models, structured helpers, and CI-ready project conventions.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-index">02</span>
+        <h3>Reduce flaky regression behavior</h3>
+        <p>Stabilize tests through better locator strategy, deterministic waits, improved test data control, and cleaner suite design.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-index">03</span>
+        <h3>Integrate automation into delivery pipelines</h3>
+        <p>Connect regression layers to GitHub Actions or CI systems so releases get faster feedback and PRs ship with stronger confidence.</p>
+      </article>
+      <article class="service-card">
+        <span class="service-index">04</span>
+        <h3>Increase test authoring speed with AI</h3>
+        <p>Use AI-assisted workflows for drafting, refactoring, and coverage ideation while keeping review quality and engineering judgment intact.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- END: What I Can Help Teams With -->
+
+<!-- ═══════════════════════════════════
+     RESUME SECTION
+     ═══════════════════════════════════ -->
+<section id="resume">
+  <div class="container" style="text-align:center;">
+    <span class="section-label">My CV</span>
+    <h2 class="section-title">Resume</h2>
+    <p style="color:var(--muted);max-width:500px;margin:0 auto 32px;">
+      Want the full details? Download my resume below or scroll through my experience &amp; projects above.
+    </p>
+    <a href="assets/resume/resume.pdf" download class="btn-primary" style="font-size:1rem;padding:16px 40px;">
+      📄 Download Resume (PDF)
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CONTACT SECTION
+     ═══════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <span class="section-label">Get in touch</span>
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-wrapper reveal">
+      <div class="contact-direct-links">
+        <a href="mailto:mrutyunjaykar2001@gmail.com" class="contact-direct-link">Email Me</a>
+        <a href="tel:+918763455838" class="contact-direct-link">Call Me</a>
+        <a href="https://www.linkedin.com/in/mrutyunjay-kar-907932182" target="_blank" rel="noopener" class="contact-direct-link">LinkedIn</a>
+      </div>
+      <p class="contact-note">This form opens a pre-filled email draft in your default mail app.</p>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Say hello, share an idea, or tell me what you'd like to build, improve, or automate..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary form-submit">Open Email Draft</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════ -->
+<footer>
+  <div class="footer-links">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/mrutyunjay-kar-907932182" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <p>© 2026 Mrutyunjay Kar · Bhubaneswar, Odisha · <a href="tel:+918763455838" style="color:var(--accent);text-decoration:none;">8763455838</a> · <a href="mailto:mrutyunjaykar2001@gmail.com" style="color:var(--accent);text-decoration:none;">mrutyunjaykar2001@gmail.com</a></p>
+</footer>
+
+<!-- Back to top button -->
+<button id="back-top" aria-label="Back to top">↑</button>
+
+<!-- Success toast for contact form -->
+<div id="toast"><span>✅</span> Email draft opened in your mail app.</div>
+
+<!-- JavaScript (all interactivity lives here) -->
+<script src="portfolio.js"></script>
+
+</body>
+</html>
