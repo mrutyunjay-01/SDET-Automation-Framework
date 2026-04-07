@@ -1,51 +1,52 @@
 import { test, expect } from '@playwright/test';
+import { PortfolioPage } from './pom/pageObjects/PortfolioPage';
+import { verifyNavigationTabs } from './pom/actions/navigation.actions';
 
 test.describe('Portfolio Website', () => {
+  let portfolio: PortfolioPage;
 
   // Runs before each test
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    portfolio = new PortfolioPage(page);
+    await portfolio.goto();
   });
 
-  test('Homepage loads with correct title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Mrutyunjay Kar/i);
+  test('test-001 Homepage loads with correct title', async () => {
+    await expect(portfolio.page).toHaveTitle(/Mrutyunjay Kar/i);
   });
 
-  test('Navigation to About section works', async ({ page }) => {
-    const aboutLink = page.getByRole('navigation').getByRole('link', { name: 'About' });
-    await expect(aboutLink).toBeVisible(); // auto-waits
-    await aboutLink.click();
+  test('test-002 Navigation to About section works', async () => {
+    await expect(portfolio.getNavLink('About')).toBeVisible();
+    await portfolio.clickNavLink('About');
+    await expect(portfolio.page).toHaveURL(/#about$/);
+    await expect(portfolio.getSectionByHash('#about')).toBeVisible();
   });
 
-  test('Projects section displays project cards', async ({ page }) => {
-    const cards = page.locator('.project-card');
+  test('test-003 Navigation tabs exist and update the hash for each section', async () => {
+    await verifyNavigationTabs(portfolio);
+  });
 
-    // Playwright auto-wait assertion
-    await expect(cards.first()).toBeVisible();
-
-    const count = await cards.count();
+  test('test-004 Projects section displays project cards', async () => {
+    await expect(portfolio.projectCards.first()).toBeVisible();
+    const count = await portfolio.projectCards.count();
     expect(count).toBeGreaterThan(0);
   });
 
-  test('Theme toggle switches dark mode OFF', async ({ page }) => {
-    const html = page.locator('html');
-    const toggle = page.locator('#themeToggle');
+  test('test-005 Theme toggle switches dark mode OFF', async () => {
+    await portfolio.toggleTheme(); // ON
+    await portfolio.toggleTheme(); // OFF
 
-    await toggle.click(); // ON
-    await toggle.click(); // OFF
-
-    await expect(html).not.toHaveClass(/dark/);
+    await expect(portfolio.page.locator('html')).not.toHaveClass(/dark/);
   });
 
-  test('Page has no console errors', async ({ page }) => {
+  test('test-006 Page has no console errors', async () => {
     const errors: string[] = [];
 
-    page.on('console', msg => {
+    portfolio.page.on('console', msg => {
       if (msg.type() === 'error') errors.push(msg.text());
     });
 
-    await page.reload();
+    await portfolio.page.reload();
     expect(errors).toEqual([]);
   });
-
 });

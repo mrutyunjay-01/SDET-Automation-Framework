@@ -140,6 +140,10 @@ Reasons:
 - Used `mailto:` for contact instead of pretending there is a backend form service.
 - Used Web Audio API to synthesize sounds rather than load external audio assets.
 
+## Live Site
+
+The portfolio is hosted online at: https://mrutyunjay-kar-profile.netlify.app
+
 ## Running Locally
 
 ### Quick Start
