@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mrutyunjay Kar Portfolio
 
 A single-page personal portfolio built with HTML, CSS, and vanilla JavaScript to present SDET, automation engineering, and front-end implementation skills.
@@ -162,3 +163,7 @@ No build step is required.
 Mrutyunjay Kar
 
 SDET | Automation Engineer | Playwright | TypeScript | AI-assisted testing
+=======
+# My_Portfolio
+Personal portfolio showcasing my work as an SDET with automation and testing projects
+>>>>>>> 59d56b5b7bcd57f271dc73f3b098d63a7320089f
