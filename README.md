@@ -1,208 +1,181 @@
-# Mrutyunjay Kar Portfolio
+# SDET Portfolio and Playwright Automation
 
-A single-page personal portfolio built with HTML, CSS, and vanilla JavaScript to present SDET, automation engineering, and front-end implementation skills.
+This repository is a portfolio website with a modern SDET automation framework built around Playwright, TypeScript, and the Page Object Model (POM).
 
-## Overview
+It is designed to demonstrate:
+- modern SDET test architecture
+- reusable and maintainable test code
+- browser automation best practices
+- a clean separation between application behavior and test assertions
 
-This project is a static portfolio website designed to balance professional presentation with custom interactivity. It showcases experience, projects, automation architecture thinking, AI-in-testing perspective, and recruiter-friendly contact access.
+## What This Project Represents
 
-The site is intentionally framework-free. The goal was to keep the implementation lightweight, portable, easy to deploy, and fully controlled through browser-native technologies.
-
-## Features
-
-- Single-page recruiter-focused portfolio
-- Dark and light theme toggle with saved preference
-- Interactive MK. command palette with keyboard shortcuts
-- Hero section with cinematic background treatment
-- Business impact highlights
-- Animated skill rings using SVG
-- Experience timeline and flagship case study
-- Filterable project cards using data attributes
-- AI-in-testing and automation architecture sections
-- Interactive heart reactions with burst animation
-- Web Audio API generated reaction sounds
-- Static-site-friendly contact flow using mailto
-- Responsive layout across desktop, tablet, and mobile
-
-## Tech Stack
-
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- SVG
-- Web Audio API
-- IntersectionObserver
-- localStorage
-- sessionStorage
+This project is not just a static site portfolio. It also serves as a living automation example for:
+- end-to-end functional verification
+- modular page objects
+- action-driven test flows
+- stable selector design
+- descriptive and maintainable spec files
 
 ## Project Structure
 
 ```text
-portfolio/
-├── index.html                 # Entry point (redirects to src/pages/index.html)
-├── package.json               # Project dependencies and scripts
-├── playwright.config.ts       # E2E testing configuration
-├── .gitignore                 # Git ignore rules
-├── LICENSE                    # MIT License
-├── README.md                  # Project documentation
-├── readme.txt                 # Personal reference (ignored)
-├── assets/                    # Static assets
-│   ├── images/               # Portfolio images
-│   └── resume/               # Resume files
-├── src/                      # Source code
-│   ├── pages/                # HTML pages
-│   │   └── index.html        # Main portfolio page
-│   ├── styles/               # CSS stylesheets
-│   │   └── main.css          # Main stylesheet
-│   ├── utils/                # JavaScript utilities
-│   │   └── main.js           # Main JavaScript file
-│   └── components/           # Reusable components (future use)
-├── tests/                    # Test suites
-│   ├── e2e/                  # End-to-end tests
-│   ├── unit/                 # Unit tests
-│   └── integration/          # Integration tests
-├── config/                   # Configuration files
-└── docs/                     # Documentation
+SDET_portfolio/
+├── index.html                  # Local entry point and redirect
+├── package.json                # Scripts, dependencies, and tooling
+├── playwright.config.ts        # Playwright test configuration
+├── README.md                   # Project and SDET documentation
+├── tests/
+│   ├── e2e/
+│   │   ├── pom/
+│   │   │   ├── actions/         # Reusable action helpers
+│   │   │   └── pageObjects/     # Page objects and locator abstractions
+│   │   └── portfolio.spec.ts    # High-level E2E test scenarios
+│   ├── integration/            # Integration test placeholders
+│   └── unit/                   # Unit test placeholders
+├── config/                     # Additional configuration files
+└── docs/                       # Supporting documentation
 ```
 
-## Architecture Notes
+## Modern SDET Style and Techniques
 
-### HTML
+### 1. Page Object Model (POM)
 
-`src/pages/index.html` contains the full semantic structure of the portfolio as a single-page application-style layout with anchored sections:
+The POM pattern keeps tests readable and maintainable by moving UI details into page objects.
 
-- Hero
-- Business Impact
-- About
-- Experience
-- Case Study
-- Projects
-- AI in Testing
-- Automation Architecture
-- Services
-- Resume
-- Contact
+In this repo:
+- `tests/e2e/pom/pageObjects/PortfolioPage.ts` stores locators and page-level interactions
+- tests call the page object instead of repeating selectors
+- UI changes are isolated to page objects rather than scattered across many specs
 
-### CSS
+### 2. Action Files
 
-`src/styles/main.css` acts as the design system and interaction styling layer.
+Action files capture higher-level workflows that can be reused across multiple tests.
 
-Key responsibilities:
+In this repo:
+- `tests/e2e/pom/actions/navigation.actions.ts` contains navigation verification logic
+- action helpers allow tests to focus on intent, not implementation details
 
-- Theme tokens using CSS variables
-- Light mode overrides via `html.light`
-- Layout and responsive breakpoints
-- Glass-style cards and section presentation
-- Hero image blending and overlays
-- Command palette styling
-- Skill ring and project card visuals
-- Heart reaction animations
-- Utility effects like progress bar, reveal transitions, toast, and cursor glow
+### 3. Focused, Descriptive Tests
 
-### JavaScript
+Each spec should verify a single user outcome.
 
-`src/utils/main.js` powers the interaction layer.
+In this repo:
+- test names clearly describe behavior
+- assertions validate navigation, page state, and element visibility
+- tests avoid overly broad or brittle validation
 
-Key responsibilities:
+### 4. Stable Locator Strategy
 
-- Theme toggle with persistence
-- Scroll progress bar and nav shrink behavior
-- Hero background fade on scroll
-- Active section highlight in nav
-- Scroll reveal animations
-- Typewriter role animation
-- Skill ring count-up and stroke animation
-- Project card filtering
-- Command palette open/close behavior and shortcuts
-- Heart reaction injection, state, animation, and sound
-- Mailto-based contact form handling
+Good automation relies on stable selectors, not fragile DOM paths.
 
-## Why No Framework
+Best practices used here:
+- use role/accessible selectors wherever possible
+- use IDs and meaningful class names for key anchors
+- avoid brittle XPath and deep descendant chains
 
-This project was intentionally built without React, Vue, or Angular.
+### 5. Explicit Assertions and Auto-Waiting
 
-Reasons:
+Playwright auto-waits for elements, but assertions provide explicit validation.
 
-- The site does not require client-side routing.
-- The interaction model is meaningful but still manageable with browser APIs.
-- There is no complex shared application state.
-- A framework would add setup and runtime complexity without enough architectural benefit.
-- Vanilla JavaScript keeps the portfolio lightweight and demonstrates strong fundamentals.
+This project uses:
+- `expect(locator).toBeVisible()`
+- `expect(locator).toHaveAttribute(...)`
+- `expect(page).toHaveURL(...)`
 
-## Key Engineering Decisions
+This makes failures easier to diagnose and keeps tests deterministic.
 
-- Used CSS variables to keep colors, surfaces, borders, and text consistent.
-- Used a single root theme class, `html.light`, for clean theme switching.
-- Used `IntersectionObserver` for reveal and count-up triggers instead of heavy manual scroll logic.
-- Used SVG stroke animation for skill rings to keep them crisp and scalable.
-- Used `localStorage` for theme because it is a true user preference.
-- Used `sessionStorage` for heart reactions because they are session-based interactive state.
-- Used `mailto:` for contact instead of pretending there is a backend form service.
-- Used Web Audio API to synthesize sounds rather than load external audio assets.
+### 6. Reusable Test Setup
 
-## Live Site
+Common setup is centralized in `beforeEach`.
 
-The portfolio is hosted online at: https://mrutyunjay-kar-profile.netlify.app
+This repo demonstrates:
+- consistent state before each test
+- `portfolio.goto()` to navigate to the base application URL
+- reuse of the same `PortfolioPage` object across all tests
 
-## Running Locally
+### 7. Separation of Concerns
 
-### Quick Start
+The tests use a layered approach:
+- page objects define selectors and simple actions
+- action modules define reusable flows
+- spec files define business-facing scenarios
+
+That separation improves readability, reduces duplication, and supports future growth.
+
+## Playwright Configuration
+
+`playwright.config.ts` is configured for real-world SDET usage:
+- `testDir: './tests/e2e'`
+- `fullyParallel: true`
+- browser matrix for Chromium, Firefox, WebKit, and mobile devices
+- `baseURL` set to the deployed site
+- trace collection on retry
+
+This makes the automation suite easy to run locally and suitable for CI.
+
+## Running the Project
+
+### Install dependencies
+
 ```bash
-# Install dependencies (for testing)
 npm install
+```
 
-# Start development server
+### Run local dev server
+
+```bash
 npm run dev
-
-# Open http://localhost:8000 in your browser
 ```
 
-### Manual Setup
-Because this is a static site, you can run it directly by opening `index.html` in a browser.
+Then open `http://localhost:8000`.
 
-If you want a local server instead, you can use any lightweight option such as:
+### Run tests
 
 ```bash
-# Python (built-in)
-python -m http.server 8000
-
-# Node.js
-npx serve .
-```
-
-Then open the local URL in your browser.
-
-### Testing
-```bash
-# Run all tests
 npm test
-
-# Run E2E tests only
 npm run test:e2e
-
-# Run tests in UI mode (visual)
 npx playwright test --ui
 ```
 
-## Deployment
+### Additional scripts
 
-This project is suitable for static hosting platforms such as:
+- `npm run build` — placeholder for build tasks
+- `npm run test:unit` — placeholder for unit tests
+- `npm run lint` — placeholder for linting
+- `npm run format` — placeholder for formatting
 
-- GitHub Pages
-- Netlify
-- Vercel
+## Test Coverage Areas
 
-No build step is required.
+This repository is structured to support multiple test layers:
+- `tests/e2e/` — full browser-based end-to-end verification
+- `tests/integration/` — integration tests for shared logic and services
+- `tests/unit/` — unit tests for isolated functions
 
-## Future Improvements
+The current implementation is focused on E2E and test architecture.
 
-- Add reduced-motion support
-- Add optional backend-backed contact handling
-- Add an accessibility review pass
-- Split larger areas into smaller reusable partials if the project grows
+## Why This Approach Works for SDETs
+
+This repo reflects modern SDET expectations:
+- maintainable automation built for evolving UI
+- clear separation between implementation and validation
+- reusable helpers that reduce repeated code
+- strong use of Playwright's modern API
+- test design that matches real user behavior
+
+## Notes for Contributors
+
+When extending this repository:
+- add new page objects for new pages or sections
+- keep high-level test flows in action helpers
+- preserve descriptive test and helper names
+- reuse selectors through page object methods
+- keep assertions close to the behavior being tested
+- avoid hard-coded waits; rely on Playwright waits and assertions
 
 ## Author
 
 Mrutyunjay Kar
 
-SDET | Automation Engineer | Playwright | TypeScript | AI-assisted testing
+SDET | Automation Engineer | Playwright | TypeScript | Modern Test Automation
+
