@@ -137,6 +137,7 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+<<<<<<< HEAD
 
 # Personal reference files
 *.txt
@@ -147,3 +148,5 @@ vite.config.ts.timestamp-*
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+=======
+>>>>>>> a65d63458bd4642b032ff03bfdcea539365ded7a

@@ -201,5 +201,4 @@ No build step is required.
 
 Mrutyunjay Kar
 
-SDET | Automation Engineer | Playwright | TypeScript | AI-assisted testing# My_Portfolio
-Personal portfolio showcasing my work as an SDET with automation and testing projects
+SDET | Automation Engineer | Playwright | TypeScript | AI-assisted testing
