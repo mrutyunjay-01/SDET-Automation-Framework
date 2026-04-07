@@ -1,0 +1,38 @@
+{
+  "name": "mrutyunjay-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Mrutyunjay Kar - SDET & Automation Engineer",
+  "main": "src/pages/index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Static site - no build required'",
+    "test": "npm run test:e2e",
+    "test:e2e": "playwright test",
+    "test:unit": "echo 'Add unit tests here'",
+    "lint": "echo 'Add linting here'",
+    "format": "echo 'Add code formatting here'"
+  },
+  "keywords": [
+    "portfolio",
+    "sdet",
+    "automation",
+    "playwright",
+    "typescript",
+    "testing"
+  ],
+  "author": "Mrutyunjay Kar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrutyunjay-01/My_Portfolio.git"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.5.2",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

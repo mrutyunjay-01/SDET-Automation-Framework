@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Mrutyunjay Kar Portfolio
 
 A single-page personal portfolio built with HTML, CSS, and vanilla JavaScript to present SDET, automation engineering, and front-end implementation skills.
@@ -40,21 +39,37 @@ The site is intentionally framework-free. The goal was to keep the implementatio
 
 ```text
 portfolio/
-├── index.html
-├── style.css
-├── script.js
-├── README.md
-├── readme.txt
-└── assets/
-    ├── images/
-    └── resume/
+├── index.html                 # Entry point (redirects to src/pages/index.html)
+├── package.json               # Project dependencies and scripts
+├── playwright.config.ts       # E2E testing configuration
+├── .gitignore                 # Git ignore rules
+├── LICENSE                    # MIT License
+├── README.md                  # Project documentation
+├── readme.txt                 # Personal reference (ignored)
+├── assets/                    # Static assets
+│   ├── images/               # Portfolio images
+│   └── resume/               # Resume files
+├── src/                      # Source code
+│   ├── pages/                # HTML pages
+│   │   └── index.html        # Main portfolio page
+│   ├── styles/               # CSS stylesheets
+│   │   └── main.css          # Main stylesheet
+│   ├── utils/                # JavaScript utilities
+│   │   └── main.js           # Main JavaScript file
+│   └── components/           # Reusable components (future use)
+├── tests/                    # Test suites
+│   ├── e2e/                  # End-to-end tests
+│   ├── unit/                 # Unit tests
+│   └── integration/          # Integration tests
+├── config/                   # Configuration files
+└── docs/                     # Documentation
 ```
 
 ## Architecture Notes
 
 ### HTML
 
-`index.html` contains the full semantic structure of the portfolio as a single-page application-style layout with anchored sections:
+`src/pages/index.html` contains the full semantic structure of the portfolio as a single-page application-style layout with anchored sections:
 
 - Hero
 - Business Impact
@@ -70,7 +85,7 @@ portfolio/
 
 ### CSS
 
-`style.css` acts as the design system and interaction styling layer.
+`src/styles/main.css` acts as the design system and interaction styling layer.
 
 Key responsibilities:
 
@@ -86,7 +101,7 @@ Key responsibilities:
 
 ### JavaScript
 
-`script.js` powers the interaction layer.
+`src/utils/main.js` powers the interaction layer.
 
 Key responsibilities:
 
@@ -127,12 +142,24 @@ Reasons:
 
 ## Running Locally
 
+### Quick Start
+```bash
+# Install dependencies (for testing)
+npm install
+
+# Start development server
+npm run dev
+
+# Open http://localhost:8000 in your browser
+```
+
+### Manual Setup
 Because this is a static site, you can run it directly by opening `index.html` in a browser.
 
 If you want a local server instead, you can use any lightweight option such as:
 
 ```bash
-# Python
+# Python (built-in)
 python -m http.server 8000
 
 # Node.js
@@ -140,6 +167,18 @@ npx serve .
 ```
 
 Then open the local URL in your browser.
+
+### Testing
+```bash
+# Run all tests
+npm test
+
+# Run E2E tests only
+npm run test:e2e
+
+# Run tests in UI mode (visual)
+npx playwright test --ui
+```
 
 ## Deployment
 
@@ -162,8 +201,5 @@ No build step is required.
 
 Mrutyunjay Kar
 
-SDET | Automation Engineer | Playwright | TypeScript | AI-assisted testing
-=======
-# My_Portfolio
+SDET | Automation Engineer | Playwright | TypeScript | AI-assisted testing# My_Portfolio
 Personal portfolio showcasing my work as an SDET with automation and testing projects
->>>>>>> 59d56b5b7bcd57f271dc73f3b098d63a7320089f
