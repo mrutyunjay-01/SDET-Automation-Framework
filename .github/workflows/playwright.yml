@@ -33,60 +33,13 @@ jobs:
 
       # 5️⃣ Run tests (headless in CI)
       - name: Run Playwright tests
-        run: npx playwright test --reporter=json,html
+        run: npx playwright test
         continue-on-error: true
 
       # 6️⃣ Generate GitHub Actions Summary (BOX you wanted)
       - name: Generate Test Summary
         if: always()
-        run: |
-          echo "## 🎭 Playwright Test Summary" >> $GITHUB_STEP_SUMMARY
-          node -e "
-          const fs = require('fs');
-          const path = 'test-results/results.json';
-
-          if (!fs.existsSync(path)) {
-            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, 'No results.json found');
-            process.exit(0);
-          }
-
-          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
-          let passed = 0, failed = 0, skipped = 0;
-
-          function walk(suite){
-            if(!suite) return;
-            if(suite.specs){
-              suite.specs.forEach(spec=>{
-                spec.tests.forEach(t=>{
-                  t.results.forEach(r=>{
-                    if(r.status==='passed') passed++;
-                    if(r.status==='failed') failed++;
-                    if(r.status==='skipped') skipped++;
-                  })
-                })
-              })
-            }
-            if(suite.suites) suite.suites.forEach(walk);
-          }
-
-          walk(data.suites[0]);
-          const total = passed + failed + skipped;
-
-          const status = failed > 0 ? '🔴 FAILURES DETECTED' : '🟢 ALL TESTS PASSED';
-
-          const summary = `
-### ${status}
-
-| Metric | Count |
-|---|---|
-| Total Tests | ${total} |
-| Passed | ${passed} |
-| Failed | ${failed} |
-| Skipped | ${skipped} |
-`;
-
-          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
-          "
+        run: node scripts/generate-summary.js
 
       # 7️⃣ Upload HTML report
       - name: Upload Playwright report
