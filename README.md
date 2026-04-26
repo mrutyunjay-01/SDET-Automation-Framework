@@ -2,7 +2,7 @@
 
 Modern end-to-end automation framework built with Playwright + TypeScript following real-world SDET practices.
 
-![CI](https://github.com/mrutyunjay-01/SDET-Automation-Framework/actions/workflows/playwrigt.yml/badge.svg)
+![CI](https://github.com/mrutyunjay-01/SDET-Automation-Framework/actions/workflows/playwright.yml/badge.svg)
 ![Playwright](https://img.shields.io/badge/Playwright-Framework-green)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Language-blue)
 ![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-orange)
