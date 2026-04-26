@@ -1,6 +1,5 @@
 name: Playwright Tests
 
-# Trigger workflow on push or pull request
 on:
   push:
     branches: [ main, master ]
@@ -8,22 +7,46 @@ on:
     branches: [ main, master ]
 
 jobs:
-  test:
+  playwright-tests:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
-      # Step 1: Check out the repo
-      - uses: actions/checkout@v4
+      # 1️⃣ Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js
-      - uses: actions/setup-node@v4
+      # 2️⃣ Setup Node with caching
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+          cache: 'npm'
 
-      # Step 3: Install dependencies
-      - run: npm ci
+      # 3️⃣ Install dependencies
+      - name: Install npm dependencies
+        run: npm ci
 
-      # Step 4: Install Playwright browsers
-      - run: npx playwright install --with-deps
+      # 4️⃣ Install browsers + OS deps
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-      # Step 5: Run tests
-      - run: npx playwright test --headed --debug
+      # 5️⃣ Run tests (HEADLESS automatically in CI)
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      # 6️⃣ Upload HTML report even if tests fail
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+
+      # 7️⃣ Upload traces/videos/screenshots
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
