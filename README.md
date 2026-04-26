@@ -1,6 +1,11 @@
-# SDET Portfolio and Playwright Automation
+# 🎭 Playwright SDET Automation Framework
 
-This repository is a portfolio website with a modern SDET automation framework built around Playwright, TypeScript, and the Page Object Model (POM).
+Modern end-to-end automation framework built with Playwright + TypeScript following real-world SDET practices.
+
+![CI](https://github.com/mrutyunjay-01/SDET-Automation-Framework/actions/workflows/playwrigt.yml/badge.svg)
+![Playwright](https://img.shields.io/badge/Playwright-Framework-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-Language-blue)
+![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-orange)
 
 It is designed to demonstrate:
 - modern SDET test architecture
@@ -8,14 +13,32 @@ It is designed to demonstrate:
 - browser automation best practices
 - a clean separation between application behavior and test assertions
 
-## What This Project Represents
+## 🚀 Key Features
 
-This project is not just a static site portfolio. It also serves as a living automation example for:
-- end-to-end functional verification
-- modular page objects
-- action-driven test flows
-- stable selector design
-- descriptive and maintainable spec files
+- Cross-browser testing (Chromium, Firefox, WebKit)
+- Mobile viewport testing
+- Page Object Model architecture
+- GitHub Actions CI pipeline
+- Automatic screenshots & videos on failure
+- Trace viewer for debugging CI failures
+- Parallel execution & test sharding ready
+
+## 🤖 Continuous Integration (CI)
+
+This project includes a GitHub Actions pipeline that automatically runs on every push and pull request.
+
+The pipeline performs:
+- dependency installation
+- Playwright browser setup
+- headless cross-browser test execution
+- HTML report generation
+- upload of debugging artifacts
+
+Artifacts available after each run:
+- Playwright HTML report
+- execution traces
+- screenshots
+- videos of failed tests
 
 ## Project Structure
 
