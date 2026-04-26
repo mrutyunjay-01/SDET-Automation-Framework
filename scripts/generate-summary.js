@@ -40,16 +40,11 @@ const status = failed > 0
     : "🟢 ALL TESTS PASSED";
 
 const summary = `
-## 🎭 Playwright Test Summary
-
 ### ${status}
 
-| Metric | Count |
-|---|---|
-| Total | ${total} |
-| Passed | ${passed} |
-| Failed | ${failed} |
-| Skipped | ${skipped} |
+| Total Tests | Passed | Failed | Skipped |
+|------------:|-------:|------:|--------:|
+| ${total}    | ${passed} | ${failed} | ${skipped} |
 `;
 
 fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
